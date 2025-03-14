@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Kosong Bebi</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="loading.css">
+</head>
+<body class="dark-mode">
+
+    <!-- Animasi Loading -->
+    <div class="loading"></div>
+
+    <!-- Saklar Lampu (Akan ditampilkan setelah loading) -->
+    <div class="switch-container" id="switchContainer">
+        <img src="assets/lightswitch.png" id="lightSwitch" alt="Light Switch">
+    </div>
+
+    <!-- Gambar Bunga (Tersembunyi Saat Awal) -->
+    <img src="assets/sunflower.png" id="flower" class="hidden" alt="Bunga Matahari">
+    
+    <!-- Bebek (Tersembunyi di Awal) -->
+    <div class="duck-container" id="duck">
+        <img src="assets/duck.png" id="duck" alt="Duck">
+        <div class="speech-bubble">
+            <p id="duckText"></p>
+        </div>
+    </div>
+    <!-- Audio Sound Effect -->
+    <audio id="clickSound">
+        <source src="assets/sound/lightswitch.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effect untuk Bebek -->
+    <audio id="duckSound">
+        <source src="assets/sound/quack.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effect untuk Bunga -->
+    <audio id="flowerSound">
+        <source src="assets/sound/sparkle.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/sound/harvestmoon.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effect untuk Modal -->
+    <audio id="modalSound">
+        <source src="assets/sound/unlock.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Modal untuk Menampilkan Gambar dan Keterangan -->
+    <div id="flowerModal" class="modal">
+        <div class="modal-content">
+            <img src="assets/bulb_gift.png" id="modalImage" alt="Item Image">
+            <p id="modalText">Selamat! Kamu telah mendapatkan hadiah lampu! 🎁</p>
+            <button id="closeModal">Lanjut</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

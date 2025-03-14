@@ -1,0 +1,692 @@
+/* Import font kustom */
+@font-face {
+    font-family: 'ByteBounce';
+    src: url('assets/font/ByteBounce.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed; /* Mencegah pergerakan layar */
+}
+
+h2 {
+    font-family: 'ByteBounce', sans-serif !important;
+    font-size: 36px;
+    font-weight: normal;
+}
+
+p {
+    font-family: 'ByteBounce', sans-serif !important;
+    font-size: 24px;
+}
+
+/* Modal Background */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.modal.show {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Konten Modal */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1001;
+}
+
+/* Gambar dalam Modal */
+#modalImage {
+    width: 100px; /* Ukuran default */
+    margin-bottom: 10px;
+}
+
+/* Gambar dalam Modal */
+#modalStoreImage {
+    width: 200px; /* Ukuran default */
+    /* margin-bottom: 10px; */
+}
+
+/* Tombol dalam Modal */
+#closeModal {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#closeModal:hover {
+    background: #e68900;
+}
+
+/* Tombol dalam Modal */
+#closeStoreModal {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#closeStoreModal:hover {
+    background: #e68900;
+}
+
+/* Tombol dalam Modal */
+#rejectStoreModal {
+    background: #ff4800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#rejectStoreModal:hover {
+    background: #ee4400;
+}
+
+/* Tombol dalam Modal */
+#closeFinalModal {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#closeFinalModal:hover {
+    background: #e68900;
+}
+
+/* Tombol dalam Modal */
+#closeFinalModal2 {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#closeFinalModal2:hover {
+    background: #e68900;
+}
+
+/* Tombol dalam Modal */
+#startAnimation {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'ByteBounce', sans-serif !important;
+    z-index: 1002;
+}
+
+#startAnimation:hover {
+    background: #e68900;
+}
+
+
+/* Kontainer untuk saklar */
+.switch-container {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    cursor: pointer;
+    opacity: 0; /* Awalnya tidak terlihat */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Saklar muncul dengan efek fade in */
+.fade-in {
+    opacity: 1 !important;
+}
+
+/* Efek fade out setelah diklik */
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ukuran saklar */
+#lightSwitch {
+    width: 120px; /* Ukuran default */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Mode awal: Gelap */
+body.dark-mode {
+    background-color: #000;
+    color: white;
+    transition: background-color 1s ease-in-out;
+}
+
+/* Mode setelah dinyalakan */
+body.light-mode {
+    background-color: #f5e5cf;
+    color: black;
+    transition: background-color 1s ease-in-out;
+}
+
+/* Gaya default untuk bunga (tersembunyi) */
+#flower {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Awalnya tidak terlihat */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    width: 100px;
+}
+
+
+/* Efek bunga matahari saat bisa diklik */
+.flower-clickable {
+    cursor: pointer;
+    animation: pulse 1s infinite alternate; /* Efek berdenyut untuk menarik perhatian */
+}
+
+
+/* Efek berdenyut */
+@keyframes pulse {
+    from { transform: translate(-50%, -165%) scale(1); }
+    to { transform: translate(-50%, -165%) scale(1.1); }
+}
+
+/* Animasi mengecil dan kembali membesar */
+@keyframes shrinkGrow {
+    0% { transform: translate(-50%, -165%) scale(1); }
+    50% { transform: translate(-50%, -165%) scale(0.6); } /* Mengecil perlahan */
+    100% { transform: translate(-50%, -165%) scale(1); } /* Kembali membesar cepat */
+}
+
+/* Tambahkan efek animasi ketika bunga diklik */
+.flower-clicked {
+    animation: shrinkGrow 0.6s ease-in-out;
+}
+
+
+/* Bunga muncul bersamaan dengan latar menjadi terang */
+body.light-mode #flower {
+    opacity: 1;
+}
+
+/* Efek pergeseran bunga ke kiri */
+.flower-move-left {
+    transform: translate(-80%, -50%); /* Geser lebih ke kiri */
+    transition: transform 1.5s ease-in-out;
+}
+
+
+/* Kontainer Bebek (Awalnya di bawah layar) */
+.duck-container {
+    position: absolute;
+    bottom: -250px; /* Bebek mulai tersembunyi */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    transition: bottom 1s ease-in-out;
+    cursor: pointer; /* Bisa diklik */
+}
+
+.duck-container.disabled {
+    cursor: default; /* Cursor normal selama jeda */
+}
+
+.disabled {
+    cursor: default; /* Cursor normal selama jeda */
+}
+
+
+#duck {
+    width: 200px;
+}
+
+/* Ketika bebek muncul */
+.show-duck {
+    bottom: 50px; /* Bebek muncul ke atas */
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    font-family: 'ByteBounce', sans-serif !important;
+    font-size: 24px;
+    position: absolute;
+    top: -90px; /* Posisinya di atas bebek */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1px 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+    display: none; /* Awalnya tidak terlihat */
+}
+
+
+
+/* Animasi teks typing */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+    #lightSwitch {
+        width: 90px; /* Ukuran lebih kecil untuk layar mobile */
+    }
+
+    /* Ukuran bunga di layar kecil (mobile) */
+    #flower {
+        width: 80px; /* Ukuran lebih kecil di mobile */
+    }
+
+    #duck {
+        width: 150px;
+    }
+
+}
+
+/* Ukuran bunga di layar besar (desktop) */
+@media (min-width: 1024px) {
+    #flower {
+        width: 100px; /* Ukuran sedikit lebih besar di desktop */
+    }
+
+    #duck {
+        width: 200px;
+    }
+}
+
+/*  */
+/*  */
+/* CSS untuk file hadiah.html */
+/*  */
+/*  */
+
+/* Gaya awal untuk bunga dan lampu sebelum animasi dimulai */
+#flowerFusion {
+    position: absolute;
+    left: -150px; /* Mulai dari luar layar kiri */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    width: 130px;
+    transition: left 2s ease-in-out, opacity 1s ease-in-out;
+}
+
+#bulbFusion {
+    position: absolute;
+    right: -150px; /* Mulai dari luar layar kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    width: 250px;
+    transition: right 2s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* Ketika elemen muncul */
+.flower-move {
+    left: 45% !important; /* Pindah ke tengah */
+    opacity: 1 !important;
+}
+
+.bulb-move {
+    right: 45% !important; /* Pindah ke tengah */
+    opacity: 1 !important;
+}
+
+/* Animasi rotasi cepat */
+@keyframes fastRotate {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Animasi bouncing 1x */
+@keyframes bounceOnce {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-60%) scale(1.1); }
+    100% { transform: translateY(-50%) scale(1); }
+}
+
+/* Tambahkan kelas untuk rotasi cepat */
+.fast-rotate {
+    animation: fastRotate 0.5s linear 6; /* Rotasi 6 kali dalam 3 detik */
+}
+
+/* Tambahkan kelas untuk bouncing 1x */
+.bounce-once {
+    animation: bounceOnce 0.6s ease-out 1; /* Efek bouncing sekali */
+}
+
+/* Efek Flash */
+@keyframes flashEffect {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Elemen Flash (Layar Putih) */
+.flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    opacity: 0;
+    z-index: 2000; /* Pastikan di atas elemen lain */
+    pointer-events: none; /* Supaya tidak mengganggu interaksi */
+}
+
+/* Aktifkan efek flash */
+.flash.active {
+    animation: flashEffect 4s ease-out;
+}
+
+/* Overlay untuk efek fade */
+#backgroundFade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #f5e5cf; /* Warna latar awal */
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Background setelah transisi */
+body.background-transition {
+    background: url("assets/store.webp") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Background baru setelah transisi */
+body.background-sushistore {
+    background: url("assets/sushiindoor.webp") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Efek fade-out baru sebelum perubahan background */
+.fade-to-hidden {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+
+
+/* Ukuran gambar instruksi dalam modal */
+.instruction-image {
+    width: 35%; /* Sesuaikan ukuran */
+    max-width: 250px;
+    /* display: block; */
+    margin: 10px auto;
+    margin-left: 35px;
+}
+
+#sunflowerModal {
+    width:70px;
+}
+
+#confetti {
+    position: fixed;
+    top: -100px; /* Mulai dari luar layar */
+    left: 50%;
+    width: 400px; /* Sesuaikan ukuran */
+    opacity: 0; /* Sembunyikan awalnya */
+    transform: translateX(-50%); /* Pusatkan */
+    z-index: 999;
+}
+
+@keyframes dropToTop {
+    0% {
+        top: -100px; /* Mulai dari luar layar */
+        opacity: 0;
+    }
+    100% {
+        top: 20px; /* Confetti turun sedikit ke layar aktif */
+        opacity: 1;
+    }
+}
+
+@keyframes swayLoop {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    50% { transform: translateX(-53%) rotate(3deg); }
+    100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+.fall {
+    animation: dropToTop 1s ease-out forwards, swayLoop 2s ease-in-out infinite;
+}
+
+.goyang {
+    animation: swayLoop 2s ease-in-out infinite;
+}
+
+.cake-hidden {
+    opacity: 0; /* Ubah dari display: none ke opacity */
+    pointer-events: none;
+}
+
+#cake {
+    position: fixed;
+    bottom: 40%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 250px;
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    opacity: 0;
+}
+
+.appear-cake {
+    opacity: 1 !important;
+    transform: translate(-50%, 0);
+    animation: floatCake 3s ease-in-out infinite;
+}
+
+@keyframes floatCake {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}
+
+.balloon-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Balon kiri */
+#balloon-left {
+    position: fixed;
+    bottom: -150px;
+    left: 10%; /* Mulai dari kiri */
+    width: 400px;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Balon kanan */
+#balloon-right {
+    position: fixed;
+    bottom: -150px;
+    left: 70%; /* Mulai dari kanan */
+    width: 400px;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+/* Animasi naik ke atas */
+.appear-balloon-left {
+    opacity: 1 !important;
+    animation: floatBalloonLeft 7s linear forwards, swayBalloon 3s ease-in-out infinite;
+}
+
+.appear-balloon-right {
+    opacity: 1 !important;
+    animation: floatBalloonRight 7s linear forwards, swayBalloon 3s ease-in-out infinite;
+}
+
+/* Balon kiri naik ke atas kanan */
+@keyframes floatBalloonLeft {
+    0% { bottom: -150px; left: 10%; }
+    100% { bottom: 110vh; left: 30%; }
+}
+
+/* Balon kanan naik ke atas kiri */
+@keyframes floatBalloonRight {
+    0% { bottom: -150px; left: 70%; }
+    100% { bottom: 110vh; left: 50%; }
+}
+
+/* Efek goyangan tertiup angin */
+@keyframes swayBalloon {
+    0% { transform: translateX(0px) rotate(0deg); }
+    25% { transform: translateX(10px) rotate(-5deg); } /* Goyang kanan */
+    50% { transform: translateX(-10px) rotate(5deg); } /* Goyang kiri */
+    75% { transform: translateX(10px) rotate(-5deg); } /* Goyang kanan */
+    100% { transform: translateX(-10px) rotate(5deg); } /* Goyang kiri */
+}
+
+.hidden-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff9800;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: 'ByteBounce', sans-serif !important;
+    transition: transform 0.3s ease-in-out;
+}
+
+.hidden-button:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Awalnya disembunyikan */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex !important; /* Munculkan modal */
+}
+
+/* Konten Modal */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto; /* Supaya bisa di-scroll */
+}
+
+/* Tombol close */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #ff4800;
+    transition: transform 0.3s ease-in-out;
+}
+
+.close:hover {
+    transform: rotate(360deg); /* Animasi berputar saat di-hover */
+}
+
+
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+    #flowerFusion {
+        width: 90px; /* Ukuran bunga lebih kecil di mobile */
+        left: -120px; /* Mulai dari lebih dekat */
+    }
+
+    #bulbFusion {
+        width: 180px; /* Ukuran lampu lebih kecil di mobile */
+        right: -120px; /* Mulai dari lebih dekat */
+    }
+
+    /* Saat muncul di mobile */
+    .flower-move {
+        left: 40% !important; /* Menyesuaikan letak di mobile */
+    }
+
+    .bulb-move {
+        right: 29% !important; /* Menyesuaikan letak di mobile */
+    }
+}
